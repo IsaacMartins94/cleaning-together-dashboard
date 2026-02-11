@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +38,15 @@
         header p {
             font-size: 1.2em;
             opacity: 0.9;
+        }
+        
+        .lang-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.9em;
         }
         
         .stats-bar {
@@ -169,6 +178,8 @@
             color: white;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
         }
         
         .video-placeholder::before {
@@ -179,8 +190,8 @@
         }
         
         .video-placeholder span {
-            font-size: 0.9em;
-            opacity: 0.7;
+            font-size: 0.85em;
+            opacity: 0.8;
             text-align: center;
             padding: 0 20px;
         }
@@ -375,73 +386,73 @@
     <div class="container">
         <header>
             <h1>🧹 Cleaning Together</h1>
-            <p>Marketing Dashboard - Aprovação de Conteúdo</p>
+            <p>Marketing Dashboard - Content Approval</p>
+            <span class="lang-badge">🇺🇸 All Content in English</span>
         </header>
         
         <div class="stats-bar">
             <div class="stat-card">
-                <div class="number">7</div>
-                <div class="label">Posts Criados</div>
+                <div class="number">4</div>
+                <div class="label">Posts Created</div>
             </div>
             <div class="stat-card">
-                <div class="number" style="color: #ffd93d;">7</div>
-                <div class="label">Pendentes</div>
+                <div class="number" style="color: #ffd93d;">4</div>
+                <div class="label">Pending Review</div>
             </div>
             <div class="stat-card">
                 <div class="number" style="color: #6bcb77;">0</div>
-                <div class="label">Aprovados</div>
+                <div class="label">Approved</div>
             </div>
         </div>
         
         <div class="filters">
-            <button class="filter-btn all" onclick="filterPosts('all')">📋 Todos</button>
-            <button class="filter-btn pending" onclick="filterPosts('pending')">⏳ Pendentes</button>
-            <button class="filter-btn approved" onclick="filterPosts('approved')">✅ Aprovados</button>
+            <button class="filter-btn all" onclick="filterPosts('all')">📋 All</button>
+            <button class="filter-btn pending" onclick="filterPosts('pending')">⏳ Pending</button>
+            <button class="filter-btn approved" onclick="filterPosts('approved')">✅ Approved</button>
         </div>
         
         <div class="posts-grid" id="postsGrid">
             <!-- Post 1 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
-                    <span class="post-type">📱 Reel</span>
-                    <div class="post-title">Kitchen Reel #1 - "Sua cozinha parece uma zona de guerra?"</div>
-                    <div class="post-date">📅 Previsto: 12/02/2026</div>
+                    <span class="post-type">📱 Instagram Reel</span>
+                    <div class="post-title">Kitchen Transformation - "Does your kitchen look like a war zone?"</div>
+                    <div class="post-date">📅 Scheduled: Feb 12, 2026</div>
                 </div>
                 
                 <div class="post-preview">
-                    <div class="video-placeholder">
-                        <span>Kitchen Chaos/Possibilities<br>vídeo disponível no Drive</span>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Kitchen Chaos Video<br>Click to view in Google Drive</span>
+                    </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDENTE</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 Conversão</span>
+                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 High Conversion</span>
                     </div>
                     
-                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
-                        📁 Ver material no Drive
-                    </a>
-                    
                     <div class="hook-section">
-                        <div class="section-label">🪝 Hook (Primeiras 3 linhas)</div>
+                        <div class="section-label">🪝 Hook (First 3 Lines)</div>
                         <div class="hook-text">
-                            Sua cozinha parece uma zona de guerra? 😱<br><br>
-                            Veja o que acontece quando nosso time entra em ação.<br><br>
-                            A transformação é INCRÍVEL! 👇
+                            Does your kitchen look like a war zone? 😱<br><br>
+                            See what happens when our team steps in.<br><br>
+                            This transformation is INCREDIBLE! 👇
                         </div>
                     </div>
                     
                     <div class="caption-section">
-                        <div class="section-label">📝 Legenda</div>
+                        <div class="section-label">📝 Caption</div>
                         <div class="caption-text">
-                            A cozinha é o coração da casa — e também um dos lugares que mais suja.<br><br>
-                            Entre o café da manhã apressado, o almoço das crianças e o jantar após um dia exaustivo de trabalho, é fácil deixar essa área acumular bagunça.<br><br>
-                            ✨ Mas e se você pudesse voltar para uma cozinha impecável TODOS OS DIAS?<br><br>
-                            Na Cleaning Together, não fazemos apenas "faxina". Devolvemos sua paz de espírito...
+                            The kitchen is the heart of your home — and also one of the messiest places.<br><br>
+                            Between rushed breakfasts, kids' lunches, and dinner after an exhausting workday, it's easy to let this area pile up.<br><br>
+                            ✨ But what if you could come home to an IMPECCABLE kitchen EVERY DAY?<br><br>
+                            At Cleaning Together, we don't just "clean." We restore your peace of mind. Our trained professionals use eco-friendly products that clean WITHOUT harming your family or the environment...<br><br>
+                            📍 Serving all of Greater Vancouver<br>
+                            🌿 Sustainable products<br>
+                            ⭐ 100% satisfaction guaranteed
                             <div class="hashtags">
-                                #CleaningTogether #LimpezaVancouver #AntesEDepois #DeepCleaning #CozinhaLimpa #VancouverLife
+                                #CleaningTogether #VancouverCleaning #BeforeAndAfter #DeepCleaning #CleanKitchen #VancouverLife #EcoFriendly #HomeTransformation #VancouverBC #CleanHome #HouseCleaning #VancouverHomes
                             </div>
                         </div>
                     </div>
@@ -449,218 +460,213 @@
                     <div class="cta-section">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            💬 Comente 'LIMPO' se sua cozinha precisa dessa transformação!
+                            💬 Comment 'CLEAN' if your kitchen needs this transformation! 👇
                         </div>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(1)">
-                        ✅ Aprovar
+                        ✅ Approve
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(1)">
-                        ✏️ Pedir Edição
+                        ✏️ Request Edit
                     </button>
                     <button class="action-btn btn-reject" onclick="rejectPost(1)">
-                        ❌ Rejeitar
+                        ❌ Reject
                     </button>
                 </div>
                 
                 <div class="comment-box" id="comment-1">
-                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
-                    <button onclick="submitComment(1)">Enviar Feedback</button>
+                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
+                    <button onclick="submitComment(1)">Send Feedback</button>
                 </div>
             </div>
             
             <!-- Post 2 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
-                    <span class="post-type">📱 Reel</span>
-                    <div class="post-title">Kitchen Reel #2 - "POV: Sogra vem amanhã"</div>
-                    <div class="post-date">📅 Previsto: 14/02/2026</div>
+                    <span class="post-type">📱 Instagram Reel</span>
+                    <div class="post-title">Kitchen Reel #2 - "POV: In-laws coming tomorrow"</div>
+                    <div class="post-date">📅 Scheduled: Feb 14, 2026</div>
                 </div>
                 
                 <div class="post-preview">
-                    <div class="video-placeholder">
-                        <span>Post-It Reveal Technique<br>vídeo disponível no Drive</span>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Post-It Reveal Technique<br>Click to view raw footage</span>
+                    </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDENTE</span>
+                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
                         <span class="status-badge" style="background: #ffe7e7; color: #cc0000;">🔥 Viral Potential</span>
                     </div>
                     
-                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
-                        📁 Ver material no Drive
-                    </a>
-                    
                     <div class="hook-section">
-                        <div class="section-label">🪝 Hook (Técnica: Post-It Reveal)</div>
+                        <div class="section-label">🪝 Hook (Post-It Reveal Technique)</div>
                         <div class="hook-text">
-                            Close-up em Post-It na geladeira:<br>
-                            "Sogra vem amanhã 😰"<br><br>
-                            Cozinha caótica no background
+                            Close-up on a yellow Post-It stuck to a messy fridge:<br>
+                            "In-laws coming tomorrow 😰"<br><br>
+                            Chaotic kitchen in the background...
                         </div>
                     </div>
                     
                     <div class="caption-section">
-                        <div class="section-label">📝 Estrutura do Vídeo (15s)</div>
+                        <div class="section-label">📝 Video Structure (15 seconds)</div>
                         <div class="caption-text">
-                            <b>0.0s:</b> Post-It "Sogra vem amanhã"<br>
-                            <b>0.5s:</b> Pan da cozinha caótica<br>
+                            <b>0.0s:</b> Post-It "In-laws coming tomorrow"<br>
+                            <b>0.5s:</b> Pan of chaotic kitchen<br>
                             <b>2.5s:</b> Black screen + suspense<br>
-                            <b>3.0s:</b> Mão arranca Post-It<br>
-                            <b>3.5s:</b> REVEAL - cozinha LIMPA<br>
-                            <b>5.5s:</b> Pan 360° cozinha impecável<br>
-                            <b>13.5s:</b> CTA com oferta<br><br>
-                            🎵 Música: Suspense → Lo-fi upbeat<br>
-                            🔊 SFX: Heartbeat, whoosh, paper rip
+                            <b>3.0s:</b> Hand rips off Post-It<br>
+                            <b>3.5s:</b> REVEAL - CLEAN kitchen!<br>
+                            <b>5.5s:</b> 360° pan of spotless kitchen<br>
+                            <b>13.5s:</b> CTA with offer<br><br>
+                            🎵 Music: Suspense → Lo-fi upbeat<br>
+                            🔊 SFX: Heartbeat, whoosh, paper rip<br><br>
+                            This technique creates EMOTIONAL HOOK — everyone can relate to the "in-laws panic!"
                         </div>
                     </div>
                     
                     <div class="cta-section">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            💬 Comente "LIMPO" para 15% OFF na primeira limpeza!
+                            💬 Comment "CLEAN" for 15% OFF your first cleaning service!
                         </div>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(2)">
-                        ✅ Aprovar
+                        ✅ Approve
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(2)">
-                        ✏️ Pedir Edição
+                        ✏️ Request Edit
                     </button>
                     <button class="action-btn btn-reject" onclick="rejectPost(2)">
-                        ❌ Rejeitar
+                        ❌ Reject
                     </button>
                 </div>
                 
                 <div class="comment-box" id="comment-2">
-                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
-                    <button onclick="submitComment(2)">Enviar Feedback</button>
+                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
+                    <button onclick="submitComment(2)">Send Feedback</button>
                 </div>
             </div>
             
             <!-- Post 3 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
-                    <span class="post-type">📱 Reel</span>
-                    <div class="post-title">Kitchen Reel #3 - "Phone Screen Magic"</div>
-                    <div class="post-date">📅 Previsto: 16/02/2026</div>
+                    <span class="post-type">📱 Instagram Reel</span>
+                    <div class="post-title">Kitchen Reel #3 - "iPhone Screen Magic"</div>
+                    <div class="post-date">📅 Scheduled: Feb 16, 2026</div>
                 </div>
                 
                 <div class="post-preview">
-                    <div class="video-placeholder">
-                        <span>iPhone Screen Magic<br>vídeo disponível no Drive</span>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 iPhone Screen Magic Technique<br>Click to view raw footage</span>
+                    </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDENTE</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">✨ Satisfying</span>
+                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">✨ Satisfying Content</span>
                     </div>
                     
-                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
-                        📁 Ver material no Drive
-                    </a>
-                    
                     <div class="hook-section">
-                        <div class="section-label">🪝 Hook (Técnica: Phone Screen Magic)</div>
+                        <div class="section-label">🪝 Hook (iPhone Screen Magic)</div>
                         <div class="hook-text">
-                            POV: iPhone mostrando foto da cozinha SUJA<br><br>
-                            Mão começa a "arrastar" a foto...<br><br>
-                            MAGIC SWAP: foto desliza → revela cozinha LIMPA atrás!
+                            POV: iPhone showing a photo of a MESSY kitchen<br><br>
+                            Hand starts to "swipe" the photo...<br><br>
+                            MAGIC SWAP: photo slides → reveals CLEAN kitchen behind!
                         </div>
                     </div>
                     
                     <div class="caption-section">
-                        <div class="section-label">📝 Estrutura do Vídeo (15s)</div>
+                        <div class="section-label">📝 Video Structure (15 seconds)</div>
                         <div class="caption-text">
-                            <b>0.0s:</b> POV: celular mostrando foto suja<br>
-                            <b>1.0s:</b> Mão "arrasta" foto (gesto)<br>
+                            <b>0.0s:</b> POV: phone showing messy photo<br>
+                            <b>1.0s:</b> Hand "swipes" photo (gesture)<br>
                             <b>1.5s:</b> iOS swipe transition<br>
-                            <b>2.0s:</b> REVEAL: cozinha limpa!<br>
-                            <b>4.0s:</b> Rack focus: celular → cozinha real<br>
+                            <b>2.0s:</b> REVEAL: clean kitchen!<br>
+                            <b>4.0s:</b> Rack focus: phone → real kitchen<br>
                             <b>7.5s:</b> ASMR cleaning sounds<br>
-                            <b>13.5s:</b> CTA com link<br><br>
-                            🎵 Música: iOS sounds → Magic sparkle → Trending
+                            <b>13.5s:</b> CTA with link<br><br>
+                            🎵 Music: iOS sounds → Magic sparkle → Trending audio<br><br>
+                            This technique is VIRAL on TikTok — the "magic reveal" stops the scroll every time.
                         </div>
                     </div>
                     
                     <div class="cta-section">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            🔗 Link na bio | cleaningtogether.ca<br>
-                            🔥 20% OFF first clean (limited)
+                            🔗 Link in bio | cleaningtogether.ca<br>
+                            🔥 20% OFF first clean (limited time)
                         </div>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(3)">
-                        ✅ Aprovar
+                        ✅ Approve
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(3)">
-                        ✏️ Pedir Edição
+                        ✏️ Request Edit
                     </button>
                     <button class="action-btn btn-reject" onclick="rejectPost(3)">
-                        ❌ Rejeitar
+                        ❌ Reject
                     </button>
                 </div>
                 
                 <div class="comment-box" id="comment-3">
-                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
-                    <button onclick="submitComment(3)">Enviar Feedback</button>
+                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
+                    <button onclick="submitComment(3)">Send Feedback</button>
                 </div>
             </div>
             
             <!-- Post 4 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
-                    <span class="post-type">📱 Reel</span>
-                    <div class="post-title">Bathroom Reel - "Banheiro que dá medo?"</div>
-                    <div class="post-date">📅 Previsto: 18/02/2026</div>
+                    <span class="post-type">📱 Instagram Reel</span>
+                    <div class="post-title">Bathroom Transformation - "Scary bathroom?"</div>
+                    <div class="post-date">📅 Scheduled: Feb 18, 2026</div>
                 </div>
                 
                 <div class="post-preview">
-                    <div class="video-placeholder">
-                        <span>Bathroom 1 ou Bathroom 2<br>vídeo disponível no Drive</span>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1T_S7SI8-wEpWDwzgcvILmXCqywPzW/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Bathroom 1 or Bathroom 2<br>Click to view raw footage</span>
+                    </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDENTE</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 Conversão</span>
+                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 High Conversion</span>
                     </div>
-                    
-                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
-                        📁 Ver material no Drive
-                    </a>
                     
                     <div class="hook-section">
                         <div class="section-label">🪝 Hook</div>
                         <div class="hook-text">
-                            Banheiro que dá medo de entrar? 🚿🧼<br><br>
-                            A gente entende. Entre trabalho, filhos e a correria de Vancouver...<br><br>
-                            ...às vezes o banheiro vira "quarto proibido". 😅 Mas olha isso! 👇
+                            Bathroom you're scared to enter? 🚿🧼<br><br>
+                            We get it. Between work, kids, and the Vancouver rush...<br><br>
+                            ...sometimes the bathroom becomes the "forbidden room." 😅 But look at this! 👇
                         </div>
                     </div>
                     
                     <div class="caption-section">
-                        <div class="section-label">📝 Legenda</div>
+                        <div class="section-label">📝 Caption</div>
                         <div class="caption-text">
-                            O banheiro limpo muda TUDO — seu humor pela manhã, sua confiança quando recebe visitas, sua saúde.<br><br>
-                            🦠 Sabia que o banheiro acumula mais bactérias que qualquer outro cômodo?<br><br>
-                            💪 A Cleaning Together existe pra isso! Nossa equipe entra em ação e devolve seu banheiro — e sua sanidade mental...
+                            A clean bathroom changes EVERYTHING — your morning mood, your confidence when hosting guests, your health.<br><br>
+                            🦠 Did you know the bathroom accumulates more bacteria than any other room? And if you have young kids, that's even more concerning.<br><br>
+                            💪 Cleaning Together exists for this! Our team steps in and returns your bathroom — and your sanity...<br><br>
+                            ✅ Deep cleaning in every corner<br>
+                            ✅ Safe for pets and kids<br>
+                            ✅ Verified, trustworthy professionals<br><br>
+                            📍 Vancouver & Metro Vancouver area<br><br>
+                            Best part? You book in 2 minutes and we handle the rest.
                             <div class="hashtags">
-                                #BanheiroLimpinho #DeepCleaningVancouver #CleaningTogether #HomeMakeover
+                                #CleanBathroom #DeepCleaningVancouver #CleaningTogether #HomeMakeover #BeforeAndAfter #VancouverHomes #EcoCleaning #DeepClean #BathroomCleaning #VancouverMom #CleanSpace #BathroomTransformation
                             </div>
                         </div>
                     </div>
@@ -668,26 +674,26 @@
                     <div class="cta-section">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            👉 Toque no link na bio e solicite seu ORÇAMENTO GRÁTIS hoje mesmo!
+                            👉 Tap the link in bio and request your FREE quote today!
                         </div>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(4)">
-                        ✅ Aprovar
+                        ✅ Approve
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(4)">
-                        ✏️ Pedir Edição
+                        ✏️ Request Edit
                     </button>
                     <button class="action-btn btn-reject" onclick="rejectPost(4)">
-                        ❌ Rejeitar
+                        ❌ Reject
                     </button>
                 </div>
                 
                 <div class="comment-box" id="comment-4">
-                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
-                    <button onclick="submitComment(4)">Enviar Feedback</button>
+                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
+                    <button onclick="submitComment(4)">Send Feedback</button>
                 </div>
             </div>
         </div>
@@ -706,12 +712,11 @@
         }
         
         function approvePost(id) {
-            alert('✅ Post ' + id + ' aprovado!\n\nVou notificar o Visual Producer para começar a edição do vídeo.');
-            // Aqui você pode adicionar código para salvar no backend
+            alert('✅ Post ' + id + ' approved!\n\nI will notify the AI Video Editing Team to start production.');
         }
         
         function rejectPost(id) {
-            alert('❌ Post ' + id + ' rejeitado.\n\nPor favor, adicione um comentário explicando o que precisa mudar.');
+            alert('❌ Post ' + id + ' rejected.\n\nPlease add a comment explaining what needs to change.');
             document.getElementById('comment-' + id).classList.add('active');
         }
         
@@ -722,10 +727,10 @@
         function submitComment(id) {
             const comment = document.querySelector('#comment-' + id + ' textarea').value;
             if (comment.trim()) {
-                alert('💬 Feedback enviado!\n\nVou repassar para o agente fazer as alterações.\n\nComentário: ' + comment);
+                alert('💬 Feedback sent!\n\nI will update the agent to make the changes.\n\nComment: ' + comment);
                 document.getElementById('comment-' + id).classList.remove('active');
             } else {
-                alert('Por favor, escreva um comentário antes de enviar.');
+                alert('Please write a comment before sending.');
             }
         }
     </script>
