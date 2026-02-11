@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Together - Marketing Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.all {
+            background: white;
+            color: #667eea;
+        }
+        
+        .filter-btn.pending {
+            background: #ffd93d;
+            color: #333;
+        }
+        
+        .filter-btn.approved {
+            background: #6bcb77;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+        
+        .post-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .post-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .post-type {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        
+        .post-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .post-preview {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .video-placeholder {
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder::before {
+            content: "▶";
+            font-size: 3em;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+        
+        .video-placeholder span {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .hook-section {
+            margin-bottom: 15px;
+        }
+        
+        .section-label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .hook-text {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 10px;
+            font-style: italic;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .caption-section {
+            margin-bottom: 15px;
+        }
+        
+        .caption-text {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            line-height: 1.6;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .hashtags {
+            color: #667eea;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+        
+        .cta-section {
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-text {
+            font-weight: 600;
+            color: #0066cc;
+        }
+        
+        .status-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background: #ffd93d;
+            color: #333;
+        }
+        
+        .status-approved {
+            background: #6bcb77;
+            color: white;
+        }
+        
+        .status-rejected {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .drive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .drive-link:hover {
+            text-decoration: underline;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px 20px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-approve {
+            background: #6bcb77;
+            color: white;
+        }
+        
+        .btn-reject {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .btn-edit {
+            background: #ffd93d;
+            color: #333;
+        }
+        
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .comment-box {
+            padding: 0 20px 20px;
+            display: none;
+        }
+        
+        .comment-box.active {
+            display: block;
+        }
+        
+        .comment-box textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .comment-box textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .comment-box button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧹 Cleaning Together</h1>
+            <p>Marketing Dashboard - Aprovação de Conteúdo</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="number">7</div>
+                <div class="label">Posts Criados</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" style="color: #ffd93d;">7</div>
+                <div class="label">Pendentes</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" style="color: #6bcb77;">0</div>
+                <div class="label">Aprovados</div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn all" onclick="filterPosts('all')">📋 Todos</button>
+            <button class="filter-btn pending" onclick="filterPosts('pending')">⏳ Pendentes</button>
+            <button class="filter-btn approved" onclick="filterPosts('approved')">✅ Aprovados</button>
+        </div>
+        
+        <div class="posts-grid" id="postsGrid">
+            <!-- Post 1 -->
+            <div class="post-card" data-status="pending">
+                <div class="post-header">
+                    <span class="post-type">📱 Reel</span>
+                    <div class="post-title">Kitchen Reel #1 - "Sua cozinha parece uma zona de guerra?"</div>
+                    <div class="post-date">📅 Previsto: 12/02/2026</div>
+                </div>
+                
+                <div class="post-preview">
+                    <div class="video-placeholder">
+                        <span>Kitchen Chaos/Possibilities<br>vídeo disponível no Drive</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <div class="status-bar">
+                        <span class="status-badge status-pending">⏳ PENDENTE</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 Conversão</span>
+                    </div>
+                    
+                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
+                        📁 Ver material no Drive
+                    </a>
+                    
+                    <div class="hook-section">
+                        <div class="section-label">🪝 Hook (Primeiras 3 linhas)</div>
+                        <div class="hook-text">
+                            Sua cozinha parece uma zona de guerra? 😱<br><br>
+                            Veja o que acontece quando nosso time entra em ação.<br><br>
+                            A transformação é INCRÍVEL! 👇
+                        </div>
+                    </div>
+                    
+                    <div class="caption-section">
+                        <div class="section-label">📝 Legenda</div>
+                        <div class="caption-text">
+                            A cozinha é o coração da casa — e também um dos lugares que mais suja.<br><br>
+                            Entre o café da manhã apressado, o almoço das crianças e o jantar após um dia exaustivo de trabalho, é fácil deixar essa área acumular bagunça.<br><br>
+                            ✨ Mas e se você pudesse voltar para uma cozinha impecável TODOS OS DIAS?<br><br>
+                            Na Cleaning Together, não fazemos apenas "faxina". Devolvemos sua paz de espírito...
+                            <div class="hashtags">
+                                #CleaningTogether #LimpezaVancouver #AntesEDepois #DeepCleaning #CozinhaLimpa #VancouverLife
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <div class="section-label">🎯 Call-to-Action</div>
+                        <div class="cta-text">
+                            💬 Comente 'LIMPO' se sua cozinha precisa dessa transformação!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button class="action-btn btn-approve" onclick="approvePost(1)">
+                        ✅ Aprovar
+                    </button>
+                    <button class="action-btn btn-edit" onclick="requestEdit(1)">
+                        ✏️ Pedir Edição
+                    </button>
+                    <button class="action-btn btn-reject" onclick="rejectPost(1)">
+                        ❌ Rejeitar
+                    </button>
+                </div>
+                
+                <div class="comment-box" id="comment-1">
+                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
+                    <button onclick="submitComment(1)">Enviar Feedback</button>
+                </div>
+            </div>
+            
+            <!-- Post 2 -->
+            <div class="post-card" data-status="pending">
+                <div class="post-header">
+                    <span class="post-type">📱 Reel</span>
+                    <div class="post-title">Kitchen Reel #2 - "POV: Sogra vem amanhã"</div>
+                    <div class="post-date">📅 Previsto: 14/02/2026</div>
+                </div>
+                
+                <div class="post-preview">
+                    <div class="video-placeholder">
+                        <span>Post-It Reveal Technique<br>vídeo disponível no Drive</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <div class="status-bar">
+                        <span class="status-badge status-pending">⏳ PENDENTE</span>
+                        <span class="status-badge" style="background: #ffe7e7; color: #cc0000;">🔥 Viral Potential</span>
+                    </div>
+                    
+                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
+                        📁 Ver material no Drive
+                    </a>
+                    
+                    <div class="hook-section">
+                        <div class="section-label">🪝 Hook (Técnica: Post-It Reveal)</div>
+                        <div class="hook-text">
+                            Close-up em Post-It na geladeira:<br>
+                            "Sogra vem amanhã 😰"<br><br>
+                            Cozinha caótica no background
+                        </div>
+                    </div>
+                    
+                    <div class="caption-section">
+                        <div class="section-label">📝 Estrutura do Vídeo (15s)</div>
+                        <div class="caption-text">
+                            <b>0.0s:</b> Post-It "Sogra vem amanhã"<br>
+                            <b>0.5s:</b> Pan da cozinha caótica<br>
+                            <b>2.5s:</b> Black screen + suspense<br>
+                            <b>3.0s:</b> Mão arranca Post-It<br>
+                            <b>3.5s:</b> REVEAL - cozinha LIMPA<br>
+                            <b>5.5s:</b> Pan 360° cozinha impecável<br>
+                            <b>13.5s:</b> CTA com oferta<br><br>
+                            🎵 Música: Suspense → Lo-fi upbeat<br>
+                            🔊 SFX: Heartbeat, whoosh, paper rip
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <div class="section-label">🎯 Call-to-Action</div>
+                        <div class="cta-text">
+                            💬 Comente "LIMPO" para 15% OFF na primeira limpeza!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button class="action-btn btn-approve" onclick="approvePost(2)">
+                        ✅ Aprovar
+                    </button>
+                    <button class="action-btn btn-edit" onclick="requestEdit(2)">
+                        ✏️ Pedir Edição
+                    </button>
+                    <button class="action-btn btn-reject" onclick="rejectPost(2)">
+                        ❌ Rejeitar
+                    </button>
+                </div>
+                
+                <div class="comment-box" id="comment-2">
+                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
+                    <button onclick="submitComment(2)">Enviar Feedback</button>
+                </div>
+            </div>
+            
+            <!-- Post 3 -->
+            <div class="post-card" data-status="pending">
+                <div class="post-header">
+                    <span class="post-type">📱 Reel</span>
+                    <div class="post-title">Kitchen Reel #3 - "Phone Screen Magic"</div>
+                    <div class="post-date">📅 Previsto: 16/02/2026</div>
+                </div>
+                
+                <div class="post-preview">
+                    <div class="video-placeholder">
+                        <span>iPhone Screen Magic<br>vídeo disponível no Drive</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <div class="status-bar">
+                        <span class="status-badge status-pending">⏳ PENDENTE</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">✨ Satisfying</span>
+                    </div>
+                    
+                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
+                        📁 Ver material no Drive
+                    </a>
+                    
+                    <div class="hook-section">
+                        <div class="section-label">🪝 Hook (Técnica: Phone Screen Magic)</div>
+                        <div class="hook-text">
+                            POV: iPhone mostrando foto da cozinha SUJA<br><br>
+                            Mão começa a "arrastar" a foto...<br><br>
+                            MAGIC SWAP: foto desliza → revela cozinha LIMPA atrás!
+                        </div>
+                    </div>
+                    
+                    <div class="caption-section">
+                        <div class="section-label">📝 Estrutura do Vídeo (15s)</div>
+                        <div class="caption-text">
+                            <b>0.0s:</b> POV: celular mostrando foto suja<br>
+                            <b>1.0s:</b> Mão "arrasta" foto (gesto)<br>
+                            <b>1.5s:</b> iOS swipe transition<br>
+                            <b>2.0s:</b> REVEAL: cozinha limpa!<br>
+                            <b>4.0s:</b> Rack focus: celular → cozinha real<br>
+                            <b>7.5s:</b> ASMR cleaning sounds<br>
+                            <b>13.5s:</b> CTA com link<br><br>
+                            🎵 Música: iOS sounds → Magic sparkle → Trending
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <div class="section-label">🎯 Call-to-Action</div>
+                        <div class="cta-text">
+                            🔗 Link na bio | cleaningtogether.ca<br>
+                            🔥 20% OFF first clean (limited)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button class="action-btn btn-approve" onclick="approvePost(3)">
+                        ✅ Aprovar
+                    </button>
+                    <button class="action-btn btn-edit" onclick="requestEdit(3)">
+                        ✏️ Pedir Edição
+                    </button>
+                    <button class="action-btn btn-reject" onclick="rejectPost(3)">
+                        ❌ Rejeitar
+                    </button>
+                </div>
+                
+                <div class="comment-box" id="comment-3">
+                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
+                    <button onclick="submitComment(3)">Enviar Feedback</button>
+                </div>
+            </div>
+            
+            <!-- Post 4 -->
+            <div class="post-card" data-status="pending">
+                <div class="post-header">
+                    <span class="post-type">📱 Reel</span>
+                    <div class="post-title">Bathroom Reel - "Banheiro que dá medo?"</div>
+                    <div class="post-date">📅 Previsto: 18/02/2026</div>
+                </div>
+                
+                <div class="post-preview">
+                    <div class="video-placeholder">
+                        <span>Bathroom 1 ou Bathroom 2<br>vídeo disponível no Drive</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <div class="status-bar">
+                        <span class="status-badge status-pending">⏳ PENDENTE</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 Conversão</span>
+                    </div>
+                    
+                    <a href="https://drive.google.com/drive/folders/114W5Z5jPVLkfXzQbEnZGLnQ41vnLSpll" class="drive-link" target="_blank">
+                        📁 Ver material no Drive
+                    </a>
+                    
+                    <div class="hook-section">
+                        <div class="section-label">🪝 Hook</div>
+                        <div class="hook-text">
+                            Banheiro que dá medo de entrar? 🚿🧼<br><br>
+                            A gente entende. Entre trabalho, filhos e a correria de Vancouver...<br><br>
+                            ...às vezes o banheiro vira "quarto proibido". 😅 Mas olha isso! 👇
+                        </div>
+                    </div>
+                    
+                    <div class="caption-section">
+                        <div class="section-label">📝 Legenda</div>
+                        <div class="caption-text">
+                            O banheiro limpo muda TUDO — seu humor pela manhã, sua confiança quando recebe visitas, sua saúde.<br><br>
+                            🦠 Sabia que o banheiro acumula mais bactérias que qualquer outro cômodo?<br><br>
+                            💪 A Cleaning Together existe pra isso! Nossa equipe entra em ação e devolve seu banheiro — e sua sanidade mental...
+                            <div class="hashtags">
+                                #BanheiroLimpinho #DeepCleaningVancouver #CleaningTogether #HomeMakeover
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <div class="section-label">🎯 Call-to-Action</div>
+                        <div class="cta-text">
+                            👉 Toque no link na bio e solicite seu ORÇAMENTO GRÁTIS hoje mesmo!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button class="action-btn btn-approve" onclick="approvePost(4)">
+                        ✅ Aprovar
+                    </button>
+                    <button class="action-btn btn-edit" onclick="requestEdit(4)">
+                        ✏️ Pedir Edição
+                    </button>
+                    <button class="action-btn btn-reject" onclick="rejectPost(4)">
+                        ❌ Rejeitar
+                    </button>
+                </div>
+                
+                <div class="comment-box" id="comment-4">
+                    <textarea placeholder="O que você quer mudar? Descreva aqui..."></textarea>
+                    <button onclick="submitComment(4)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function filterPosts(status) {
+            const cards = document.querySelectorAll('.post-card');
+            cards.forEach(card => {
+                if (status === 'all' || card.dataset.status === status) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function approvePost(id) {
+            alert('✅ Post ' + id + ' aprovado!\n\nVou notificar o Visual Producer para começar a edição do vídeo.');
+            // Aqui você pode adicionar código para salvar no backend
+        }
+        
+        function rejectPost(id) {
+            alert('❌ Post ' + id + ' rejeitado.\n\nPor favor, adicione um comentário explicando o que precisa mudar.');
+            document.getElementById('comment-' + id).classList.add('active');
+        }
+        
+        function requestEdit(id) {
+            document.getElementById('comment-' + id).classList.add('active');
+        }
+        
+        function submitComment(id) {
+            const comment = document.querySelector('#comment-' + id + ' textarea').value;
+            if (comment.trim()) {
+                alert('💬 Feedback enviado!\n\nVou repassar para o agente fazer as alterações.\n\nComentário: ' + comment);
+                document.getElementById('comment-' + id).classList.remove('active');
+            } else {
+                alert('Por favor, escreva um comentário antes de enviar.');
+            }
+        }
+    </script>
+</body>
+</html>
