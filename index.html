@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleaning Together - Marketing Dashboard</title>
+    <title>Cleaning Together - Video Approval Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -40,15 +40,6 @@
             opacity: 0.9;
         }
         
-        .lang-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-        
         .stats-bar {
             display: flex;
             justify-content: center;
@@ -76,6 +67,43 @@
             color: #666;
             font-size: 0.9em;
             margin-top: 5px;
+        }
+        
+        .style-guide {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .style-guide h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .style-guide h3 {
+            color: #333;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+        }
+        
+        .style-guide ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .style-guide li {
+            margin-bottom: 8px;
+        }
+        
+        .keyword-example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
         }
         
         .filters {
@@ -118,7 +146,7 @@
         
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 25px;
         }
         
@@ -156,9 +184,10 @@
             margin-bottom: 5px;
         }
         
-        .post-date {
+        .post-meta {
             font-size: 0.9em;
             opacity: 0.8;
+            margin-top: 10px;
         }
         
         .post-preview {
@@ -200,8 +229,28 @@
             padding: 20px;
         }
         
-        .hook-section {
+        .status-bar {
+            display: flex;
+            gap: 10px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .status-ready {
+            background: #6bcb77;
+            color: white;
+        }
+        
+        .status-pending {
+            background: #ffd93d;
+            color: #333;
         }
         
         .section-label {
@@ -212,73 +261,46 @@
             margin-bottom: 5px;
         }
         
-        .hook-text {
+        .narration-box {
             background: #fff3cd;
             padding: 12px;
             border-radius: 10px;
             font-style: italic;
             color: #856404;
             border-left: 4px solid #ffc107;
-        }
-        
-        .caption-section {
             margin-bottom: 15px;
-        }
-        
-        .caption-text {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 0.95em;
-            line-height: 1.6;
-            max-height: 150px;
+            max-height: 120px;
             overflow-y: auto;
         }
         
-        .hashtags {
-            color: #667eea;
-            font-size: 0.85em;
-            margin-top: 10px;
+        .keywords-box {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
         
-        .cta-section {
-            background: #e7f3ff;
+        .keyword-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+        
+        .cta-box {
+            background: #f0fff0;
             padding: 12px;
             border-radius: 10px;
+            border-left: 4px solid #6bcb77;
             margin-bottom: 15px;
         }
         
         .cta-text {
             font-weight: 600;
-            color: #0066cc;
-        }
-        
-        .status-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .status-badge {
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background: #ffd93d;
-            color: #333;
-        }
-        
-        .status-approved {
-            background: #6bcb77;
-            color: white;
-        }
-        
-        .status-rejected {
-            background: #ff6b6b;
-            color: white;
+            color: #228b22;
         }
         
         .drive-link {
@@ -335,42 +357,6 @@
             transform: scale(1.05);
         }
         
-        .comment-box {
-            padding: 0 20px 20px;
-            display: none;
-        }
-        
-        .comment-box.active {
-            display: block;
-        }
-        
-        .comment-box textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 0.95em;
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .comment-box textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .comment-box button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
         @media (max-width: 768px) {
             .posts-grid {
                 grid-template-columns: 1fr;
@@ -386,18 +372,17 @@
     <div class="container">
         <header>
             <h1>🧹 Cleaning Together</h1>
-            <p>Marketing Dashboard - Content Approval</p>
-            <span class="lang-badge">🇺🇸 All Content in English</span>
+            <p>Video Approval Dashboard - Professional Agency Content</p>
         </header>
         
         <div class="stats-bar">
             <div class="stat-card">
-                <div class="number">4</div>
-                <div class="label">Posts Created</div>
+                <div class="number">7</div>
+                <div class="label">Videos Ready</div>
             </div>
             <div class="stat-card">
-                <div class="number" style="color: #ffd93d;">4</div>
-                <div class="label">Pending Review</div>
+                <div class="number" style="color: #ffd93d;">7</div>
+                <div class="label">Pending Approval</div>
             </div>
             <div class="stat-card">
                 <div class="number" style="color: #6bcb77;">0</div>
@@ -405,295 +390,329 @@
             </div>
         </div>
         
+        <div class="style-guide">
+            <h2>🎬 Professional Video Style Guide</h2>
+            <p><strong>Based on analysis of 7 videos from previous agency:</strong></p>
+            
+            <h3>✅ What Works (Keep This Pattern):</h3>
+            <ul>
+                <li><strong>Narration:</strong> Professional voiceover in English, well-structured copy</li>
+                <li><strong>Text on Screen:</strong> KEYWORDS only (not full captions) — maximum 3-5 words at a time</li>
+                <li><strong>Timing:</strong> Text appears simultaneously with narration, but shows KEY phrases</li>
+                <li><strong>Music:</strong> Upbeat, professional background music (TV commercial style)</li>
+                <li><strong>Pacing:</strong> Dynamic cuts, before/after reveals, satisfying cleaning moments</li>
+            </ul>
+            
+            <h3>📝 Text Overlay Pattern:</h3>
+            <div class="keyword-example">
+                <strong>Example from Kitchen Chaos video:</strong><br>
+                When narrator says: <em>"Is your kitchen overwhelming you?"</em><br>
+                Screen shows: <span class="keyword-tag">OVERWHELMING?</span> or <span class="keyword-tag">KITCHEN CHAOS</span>
+            </div>
+            
+            <div class="keyword-example">
+                <strong>Example from Bathroom video:</strong><br>
+                When narrator says: <em>"This isn't just any dirty bathroom, it's a cleaning nightmare"</em><br>
+                Screen shows: <span class="keyword-tag">CLEANING NIGHTMARE</span> → <span class="keyword-tag">TRANSFORMATION</span>
+            </div>
+            
+            <h3>🎯 Key Elements to Maintain:</h3>
+            <ul>
+                <li>✨ Bold, easy-to-read text (white/yellow with black outline)</li>
+                <li>🎨 Consistent branding colors</li>
+                <li>⏱️ Text stays 2-3 seconds on screen</li>
+                <li>🔥 Impact words: "TRANSFORMATION" "NIGHTMARE" "IMPOSSIBLE" "SPOTLESS"</li>
+                <li>🎵 Background music: Upbeat, energetic, professional</li>
+            </ul>
+            
+            <h3>⚠️ For Future Videos (Eva's Team):</h3>
+            <ul>
+                <li>Record RAW footage: 10-15 seconds "before", cleaning process, 10-15 seconds "after"</li>
+                <li>Keep camera steady (tripod if possible)</li>
+                <li>Good lighting essential</li>
+                <li>AI Editor will apply this professional style</li>
+            </ul>
+        </div>
+        
         <div class="filters">
-            <button class="filter-btn all" onclick="filterPosts('all')">📋 All</button>
+            <button class="filter-btn all" onclick="filterPosts('all')">📋 All Videos</button>
             <button class="filter-btn pending" onclick="filterPosts('pending')">⏳ Pending</button>
             <button class="filter-btn approved" onclick="filterPosts('approved')">✅ Approved</button>
         </div>
         
         <div class="posts-grid" id="postsGrid">
-            <!-- Post 1 -->
+            <!-- Video 1: Kitchen Possibilities -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
                     <span class="post-type">📱 Instagram Reel</span>
-                    <div class="post-title">Kitchen Transformation - "Does your kitchen look like a war zone?"</div>
-                    <div class="post-date">📅 Scheduled: Feb 12, 2026</div>
+                    <div class="post-title">Kitchen Possibilities - "From Overwhelming to Outstanding"</div>
+                    <div class="post-meta">
+                        📅 Duration: 37s | 🎵 Has music | ✅ Professional voiceover
+                    </div>
                 </div>
                 
                 <div class="post-preview">
-                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
-                        <span>🎬 Kitchen Chaos Video<br>Click to view in Google Drive</span>
+                    <a href="https://drive.google.com/file/d/1nrMCdZ_UtLMyIks7HORpkbQFJshOmgPa/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Kitchen Possibilities<br>Click to watch on Google Drive</span>
                     </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 High Conversion</span>
+                        <span class="status-badge status-ready">✅ READY TO POST</span>
+                        <span class="status-badge" style="background: #ffe7e7; color: #cc0000;">🔥 HIGH CONVERSION</span>
                     </div>
                     
-                    <div class="hook-section">
-                        <div class="section-label">🪝 Hook (First 3 Lines)</div>
-                        <div class="hook-text">
-                            Does your kitchen look like a war zone? 😱<br><br>
-                            See what happens when our team steps in.<br><br>
-                            This transformation is INCREDIBLE! 👇
-                        </div>
+                    <a href="https://drive.google.com/file/d/1nrMCdZ_UtLMyIks7HORpkbQFJshOmgPa/view?usp=drive_link" class="drive-link" target="_blank">
+                        ▶️ Watch Video on Google Drive
+                    </a>
+                    
+                    <div class="section-label">🎙️ Professional Narration</div>
+                    <div class="narration-box">
+                        "From overwhelming to outstanding. Imagine if this was your kitchen. Transformed into this. Our professionals leave no stone unturned. See the difference in every corner. Turn your dream kitchen into reality. Cook with us today."
                     </div>
                     
-                    <div class="caption-section">
-                        <div class="section-label">📝 Caption</div>
-                        <div class="caption-text">
-                            The kitchen is the heart of your home — and also one of the messiest places.<br><br>
-                            Between rushed breakfasts, kids' lunches, and dinner after an exhausting workday, it's easy to let this area pile up.<br><br>
-                            ✨ But what if you could come home to an IMPECCABLE kitchen EVERY DAY?<br><br>
-                            At Cleaning Together, we don't just "clean." We restore your peace of mind. Our trained professionals use eco-friendly products that clean WITHOUT harming your family or the environment...<br><br>
-                            📍 Serving all of Greater Vancouver<br>
-                            🌿 Sustainable products<br>
-                            ⭐ 100% satisfaction guaranteed
-                            <div class="hashtags">
-                                #CleaningTogether #VancouverCleaning #BeforeAndAfter #DeepCleaning #CleanKitchen #VancouverLife #EcoFriendly #HomeTransformation #VancouverBC #CleanHome #HouseCleaning #VancouverHomes
-                            </div>
-                        </div>
+                    <div class="section-label">📝 Suggested On-Screen Keywords</div>
+                    <div class="keywords-box">
+                        <span class="keyword-tag">OVERWHELMING</span>
+                        <span class="keyword-tag">→</span>
+                        <span class="keyword-tag">OUTSTANDING</span>
+                        <span class="keyword-tag">TRANSFORMATION</span>
+                        <span class="keyword-tag">DREAM KITCHEN</span>
+                        <span class="keyword-tag">COOK WITH US</span>
                     </div>
                     
-                    <div class="cta-section">
+                    <div class="cta-box">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            💬 Comment 'CLEAN' if your kitchen needs this transformation! 👇
+                            "Cook with us today" + Link in bio
                         </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                        <div class="section-label">📊 Analysis</div>
+                        <ul style="margin-left: 20px; font-size: 0.9em;">
+                            <li>✅ Strong emotional hook</li>
+                            <li>✅ Perfect for Reels (37s)</li>
+                            <li>✅ Professional voiceover</li>
+                            <li>✅ Direct CTA</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(1)">
-                        ✅ Approve
+                        ✅ Approve for Posting
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(1)">
-                        ✏️ Request Edit
+                        ✏️ Request Changes
                     </button>
-                    <button class="action-btn btn-reject" onclick="rejectPost(1)">
-                        ❌ Reject
-                    </button>
-                </div>
-                
-                <div class="comment-box" id="comment-1">
-                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
-                    <button onclick="submitComment(1)">Send Feedback</button>
                 </div>
             </div>
             
-            <!-- Post 2 -->
+            <!-- Video 2: Fogao1 (Stove) -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
                     <span class="post-type">📱 Instagram Reel</span>
-                    <div class="post-title">Kitchen Reel #2 - "POV: In-laws coming tomorrow"</div>
-                    <div class="post-date">📅 Scheduled: Feb 14, 2026</div>
+                    <div class="post-title">Fogao1 (Stove) - "After a Long Week"</div>
+                    <div class="post-meta">
+                        📅 Duration: 30s | 🎵 Has music | ✅ Professional voiceover
+                    </div>
                 </div>
                 
                 <div class="post-preview">
-                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
-                        <span>🎬 Post-It Reveal Technique<br>Click to view raw footage</span>
+                    <a href="https://drive.google.com/file/d/1s3t1rW46iDs9bireZUtYm3TRBVIWWZvl/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Stove Cleaning Video<br>Click to watch on Google Drive</span>
                     </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
-                        <span class="status-badge" style="background: #ffe7e7; color: #cc0000;">🔥 Viral Potential</span>
+                        <span class="status-badge status-ready">✅ READY TO POST</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 RELATABLE</span>
                     </div>
                     
-                    <div class="hook-section">
-                        <div class="section-label">🪝 Hook (Post-It Reveal Technique)</div>
-                        <div class="hook-text">
-                            Close-up on a yellow Post-It stuck to a messy fridge:<br>
-                            "In-laws coming tomorrow 😰"<br><br>
-                            Chaotic kitchen in the background...
-                        </div>
+                    <a href="https://drive.google.com/file/d/1s3t1rW46iDs9bireZUtYm3TRBVIWWZvl/view?usp=drive_link" class="drive-link" target="_blank">
+                        ▶️ Watch Video on Google Drive
+                    </a>
+                    
+                    <div class="section-label">🎙️ Professional Narration</div>
+                    <div class="narration-box">
+                        "Is your kitchen looking like this after a long week? Dreading the thought of facing this mess? Is your stove like that? Oops. Let Cleaning Together take on the challenge. Our experts tackle the toughest spots, so you don't have to. Reclaim your sparkling clean kitchen and transform your space. Contact Cleaning Together today and enjoy a cleaner tomorrow. Book now."
                     </div>
                     
-                    <div class="caption-section">
-                        <div class="section-label">📝 Video Structure (15 seconds)</div>
-                        <div class="caption-text">
-                            <b>0.0s:</b> Post-It "In-laws coming tomorrow"<br>
-                            <b>0.5s:</b> Pan of chaotic kitchen<br>
-                            <b>2.5s:</b> Black screen + suspense<br>
-                            <b>3.0s:</b> Hand rips off Post-It<br>
-                            <b>3.5s:</b> REVEAL - CLEAN kitchen!<br>
-                            <b>5.5s:</b> 360° pan of spotless kitchen<br>
-                            <b>13.5s:</b> CTA with offer<br><br>
-                            🎵 Music: Suspense → Lo-fi upbeat<br>
-                            🔊 SFX: Heartbeat, whoosh, paper rip<br><br>
-                            This technique creates EMOTIONAL HOOK — everyone can relate to the "in-laws panic!"
-                        </div>
+                    <div class="section-label">📝 Suggested On-Screen Keywords</div>
+                    <div class="keywords-box">
+                        <span class="keyword-tag">AFTER A LONG WEEK?</span>
+                        <span class="keyword-tag">DREADING THIS?</span>
+                        <span class="keyword-tag">WE GOT YOU</span>
+                        <span class="keyword-tag">EXPERTS</span>
+                        <span class="keyword-tag">SPARKLING CLEAN</span>
+                        <span class="keyword-tag">BOOK NOW</span>
                     </div>
                     
-                    <div class="cta-section">
+                    <div class="cta-box">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            💬 Comment "CLEAN" for 15% OFF your first cleaning service!
+                            "Book now" + Multiple CTAs throughout
                         </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                        <div class="section-label">📊 Analysis</div>
+                        <ul style="margin-left: 20px; font-size: 0.9em;">
+                            <li>✅ Highly relatable hook</li>
+                            <li>✅ Addresses specific pain point</li>
+                            <li>✅ Brand mentioned clearly</li>
+                            <li>✅ Perfect length for Reels</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(2)">
-                        ✅ Approve
+                        ✅ Approve for Posting
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(2)">
-                        ✏️ Request Edit
+                        ✏️ Request Changes
                     </button>
-                    <button class="action-btn btn-reject" onclick="rejectPost(2)">
-                        ❌ Reject
-                    </button>
-                </div>
-                
-                <div class="comment-box" id="comment-2">
-                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
-                    <button onclick="submitComment(2)">Send Feedback</button>
                 </div>
             </div>
             
-            <!-- Post 3 -->
+            <!-- Video 3: Bathroom 2 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
                     <span class="post-type">📱 Instagram Reel</span>
-                    <div class="post-title">Kitchen Reel #3 - "iPhone Screen Magic"</div>
-                    <div class="post-date">📅 Scheduled: Feb 16, 2026</div>
+                    <div class="post-title">Bathroom 2 - "Cleaning Nightmare"</div>
+                    <div class="post-meta">
+                        📅 Duration: 31s | 🎵 Has music | ✅ Professional voiceover
+                    </div>
                 </div>
                 
                 <div class="post-preview">
-                    <a href="https://drive.google.com/file/d/1MRTvrXk4dA49sKvlNkpgMwVFGypG7MlK/view?usp=drive_link" target="_blank" class="video-placeholder">
-                        <span>🎬 iPhone Screen Magic Technique<br>Click to view raw footage</span>
+                    <a href="https://drive.google.com/file/d/1T_S7SI8-wEpWDwzgcuIAv9lmXCqywPzW/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Bathroom Transformation<br>Click to watch on Google Drive</span>
                     </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">✨ Satisfying Content</span>
+                        <span class="status-badge status-ready">✅ READY TO POST</span>
+                        <span class="status-badge" style="background: #ffe7e7; color: #cc0000;">🔥 VIRAL POTENTIAL</span>
                     </div>
                     
-                    <div class="hook-section">
-                        <div class="section-label">🪝 Hook (iPhone Screen Magic)</div>
-                        <div class="hook-text">
-                            POV: iPhone showing a photo of a MESSY kitchen<br><br>
-                            Hand starts to "swipe" the photo...<br><br>
-                            MAGIC SWAP: photo slides → reveals CLEAN kitchen behind!
-                        </div>
+                    <a href="https://drive.google.com/file/d/1T_S7SI8-wEpWDwzgcuIAv9lmXCqywPzW/view?drive_link" class="drive-link" target="_blank">
+                        ▶️ Watch Video on Google Drive
+                    </a>
+                    
+                    <div class="section-label">🎙️ Professional Narration</div>
+                    <div class="narration-box">
+                        "This isn't just any dirty bathroom, it's a cleaning nightmare. When it seems beyond hope, that's when we step in. Our expert team tackles the filth head-on with precision tools and techniques for a deep, thorough clean. Even stubborn stains surrender to our state-of-the-art equipment. The transformation is astonishing. Your bathroom like new. Experience the shock of a spotless finish. Hire us today. Contact us now for a sparkling clean."
                     </div>
                     
-                    <div class="caption-section">
-                        <div class="section-label">📝 Video Structure (15 seconds)</div>
-                        <div class="caption-text">
-                            <b>0.0s:</b> POV: phone showing messy photo<br>
-                            <b>1.0s:</b> Hand "swipes" photo (gesture)<br>
-                            <b>1.5s:</b> iOS swipe transition<br>
-                            <b>2.0s:</b> REVEAL: clean kitchen!<br>
-                            <b>4.0s:</b> Rack focus: phone → real kitchen<br>
-                            <b>7.5s:</b> ASMR cleaning sounds<br>
-                            <b>13.5s:</b> CTA with link<br><br>
-                            🎵 Music: iOS sounds → Magic sparkle → Trending audio<br><br>
-                            This technique is VIRAL on TikTok — the "magic reveal" stops the scroll every time.
-                        </div>
+                    <div class="section-label">📝 Suggested On-Screen Keywords</div>
+                    <div class="keywords-box">
+                        <span class="keyword-tag">CLEANING NIGHTMARE</span>
+                        <span class="keyword-tag">BEYOND HOPE?</span>
+                        <span class="keyword-tag">EXPERT TEAM</span>
+                        <span class="keyword-tag">DEEP CLEAN</span>
+                        <span class="keyword-tag">ASTONISHING</span>
+                        <span class="keyword-tag">SPOTLESS</span>
                     </div>
                     
-                    <div class="cta-section">
+                    <div class="cta-box">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            🔗 Link in bio | cleaningtogether.ca<br>
-                            🔥 20% OFF first clean (limited time)
+                            "Hire us today" + "Contact us now"
                         </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                        <div class="section-label">📊 Analysis</div>
+                        <ul style="margin-left: 20px; font-size: 0.9em;">
+                            <li>🔥 HIGH VIRAL POTENTIAL</li>
+                            <li>✅ Shock value = scroll stopper</li>
+                            <li>✅ Dramatic hook</li>
+                            <li>✅ Emphasizes expertise</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(3)">
-                        ✅ Approve
+                        ✅ Approve for Posting
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(3)">
-                        ✏️ Request Edit
+                        ✏️ Request Changes
                     </button>
-                    <button class="action-btn btn-reject" onclick="rejectPost(3)">
-                        ❌ Reject
-                    </button>
-                </div>
-                
-                <div class="comment-box" id="comment-3">
-                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
-                    <button onclick="submitComment(3)">Send Feedback</button>
                 </div>
             </div>
             
-            <!-- Post 4 -->
+            <!-- Video 4: Bathroom 1 -->
             <div class="post-card" data-status="pending">
                 <div class="post-header">
                     <span class="post-type">📱 Instagram Reel</span>
-                    <div class="post-title">Bathroom Transformation - "Scary bathroom?"</div>
-                    <div class="post-date">📅 Scheduled: Feb 18, 2026</div>
+                    <div class="post-title">Bathroom 1 - "Impossible to Clean?"</div>
+                    <div class="post-meta">
+                        📅 Duration: 31s | 🎵 Has music | ✅ Professional voiceover
+                    </div>
                 </div>
                 
                 <div class="post-preview">
-                    <a href="https://drive.google.com/file/d/1T_S7SI8-wEpWDwzgcvILmXCqywPzW/view?usp=drive_link" target="_blank" class="video-placeholder">
-                        <span>🎬 Bathroom 1 or Bathroom 2<br>Click to view raw footage</span>
+                    <a href="https://drive.google.com/file/d/1l1xcmDeO0TEBKO6rhqCHIQZyqg1KkxeN/view?usp=drive_link" target="_blank" class="video-placeholder">
+                        <span>🎬 Bathroom Video<br>Click to watch on Google Drive</span>
                     </a>
                 </div>
                 
                 <div class="post-content">
                     <div class="status-bar">
-                        <span class="status-badge status-pending">⏳ PENDING REVIEW</span>
-                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">🎯 High Conversion</span>
+                        <span class="status-badge status-ready">✅ READY TO POST</span>
+                        <span class="status-badge" style="background: #e7f3ff; color: #0066cc;">💡 EMPATHY-BASED</span>
                     </div>
                     
-                    <div class="hook-section">
-                        <div class="section-label">🪝 Hook</div>
-                        <div class="hook-text">
-                            Bathroom you're scared to enter? 🚿🧼<br><br>
-                            We get it. Between work, kids, and the Vancouver rush...<br><br>
-                            ...sometimes the bathroom becomes the "forbidden room." 😅 But look at this! 👇
-                        </div>
+                    <a href="https://drive.google.com/file/d/1l1xcmDeO0TEBKO6rhqCHIQZyqg1KkxeN/view?usp=drive_link" class="drive-link" target="_blank">
+                        ▶️ Watch Video on Google Drive
+                    </a>
+                    
+                    <div class="section-label">🎙️ Professional Narration</div>
+                    <div class="narration-box">
+                        "Have you ever found your bathroom like this? It seems impossible to clean, right? We understand how frustrating it can be. But what if we told you we have the perfect solution? We use professional techniques to ensure a deep clean. Our state-of-the-art machinery makes even the toughest stains disappear. The result? A pristine bathroom. Transform your home with our professional cleaning services. Book our services today."
                     </div>
                     
-                    <div class="caption-section">
-                        <div class="section-label">📝 Caption</div>
-                        <div class="caption-text">
-                            A clean bathroom changes EVERYTHING — your morning mood, your confidence when hosting guests, your health.<br><br>
-                            🦠 Did you know the bathroom accumulates more bacteria than any other room? And if you have young kids, that's even more concerning.<br><br>
-                            💪 Cleaning Together exists for this! Our team steps in and returns your bathroom — and your sanity...<br><br>
-                            ✅ Deep cleaning in every corner<br>
-                            ✅ Safe for pets and kids<br>
-                            ✅ Verified, trustworthy professionals<br><br>
-                            📍 Vancouver & Metro Vancouver area<br><br>
-                            Best part? You book in 2 minutes and we handle the rest.
-                            <div class="hashtags">
-                                #CleanBathroom #DeepCleaningVancouver #CleaningTogether #HomeMakeover #BeforeAndAfter #VancouverHomes #EcoCleaning #DeepClean #BathroomCleaning #VancouverMom #CleanSpace #BathroomTransformation
-                            </div>
-                        </div>
+                    <div class="section-label">📝 Suggested On-Screen Keywords</div>
+                    <div class="keywords-box">
+                        <span class="keyword-tag">IMPOSSIBLE?</span>
+                        <span class="keyword-tag">WE UNDERSTAND</span>
+                        <span class="keyword-tag">PERFECT SOLUTION</span>
+                        <span class="keyword-tag">PROFESSIONAL</span>
+                        <span class="keyword-tag">PRISTINE</span>
+                        <span class="keyword-tag">TRANSFORM</span>
                     </div>
                     
-                    <div class="cta-section">
+                    <div class="cta-box">
                         <div class="section-label">🎯 Call-to-Action</div>
                         <div class="cta-text">
-                            👉 Tap the link in bio and request your FREE quote today!
+                            "Book our services today"
                         </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                        <div class="section-label">📊 Analysis</div>
+                        <ul style="margin-left: 20px; font-size: 0.9em;">
+                            <li>✅ Empathy-based hook</li>
+                            <li>✅ Solution-focused</li>
+                            <li>✅ Similar to Bathroom 2 (test both)</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="actions">
                     <button class="action-btn btn-approve" onclick="approvePost(4)">
-                        ✅ Approve
+                        ✅ Approve for Posting
                     </button>
                     <button class="action-btn btn-edit" onclick="requestEdit(4)">
-                        ✏️ Request Edit
+                        ✏️ Request Changes
                     </button>
-                    <button class="action-btn btn-reject" onclick="rejectPost(4)">
-                        ❌ Reject
-                    </button>
-                </div>
-                
-                <div class="comment-box" id="comment-4">
-                    <textarea placeholder="What would you like to change? Describe here..."></textarea>
-                    <button onclick="submitComment(4)">Send Feedback</button>
                 </div>
             </div>
         </div>
@@ -712,25 +731,13 @@
         }
         
         function approvePost(id) {
-            alert('✅ Post ' + id + ' approved!\n\nI will notify the AI Video Editing Team to start production.');
-        }
-        
-        function rejectPost(id) {
-            alert('❌ Post ' + id + ' rejected.\n\nPlease add a comment explaining what needs to change.');
-            document.getElementById('comment-' + id).classList.add('active');
+            alert('✅ Video ' + id + ' approved for posting!\n\nI will schedule this for Instagram.');
         }
         
         function requestEdit(id) {
-            document.getElementById('comment-' + id).classList.add('active');
-        }
-        
-        function submitComment(id) {
-            const comment = document.querySelector('#comment-' + id + ' textarea').value;
-            if (comment.trim()) {
-                alert('💬 Feedback sent!\n\nI will update the agent to make the changes.\n\nComment: ' + comment);
-                document.getElementById('comment-' + id).classList.remove('active');
-            } else {
-                alert('Please write a comment before sending.');
+            const reason = prompt('What changes would you like?\n\nExamples:\n- Change text overlay\n- Adjust music\n- Modify CTA\n- Other...');
+            if (reason && reason.trim()) {
+                alert('💬 Edit request sent!\n\nReason: ' + reason + '\n\nI will update the video accordingly.');
             }
         }
     </script>
